@@ -68,14 +68,14 @@ public class DatabaseClass {
         return ourDatabase.insert(DATABASE_TABLE,null,cv);
     }
     public String getData() {
-        String result = " ";
+
         String [] col=new String[]{KEY_ROWID,KEY_X,KEY_Y};
         Cursor c=ourDatabase.query(DATABASE_TABLE, col, null, null, null, null, null);
         int ix=c.getColumnIndex(KEY_X);
         int iy=c.getColumnIndex(KEY_Y);
         for(c.moveToFirst();!c.isAfterLast();c.moveToNext()) {
-            result =  c.getString(ix) + " " + c.getString(iy) + "\n";
+
         }
-        return result;
+        return null;
     }
 }
