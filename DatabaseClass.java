@@ -60,22 +60,23 @@ public class DatabaseClass {
         ourHelper.close();
     }
 
-    public long createEntry(String x,String y)
-    {
+    public long createEntry(String x, String y) {
         ContentValues cv = new ContentValues();
-        cv.put(KEY_X,x);
-        cv.put(KEY_Y,y);
-        return ourDatabase.insert(DATABASE_TABLE,null,cv);
+        cv.put(KEY_X, x);
+        cv.put(KEY_Y, y);
+        return ourDatabase.insert(DATABASE_TABLE, null, cv);
     }
-    public String getData() {
 
-        String [] col=new String[]{KEY_ROWID,KEY_X,KEY_Y};
-        Cursor c=ourDatabase.query(DATABASE_TABLE, col, null, null, null, null, null);
-        int ix=c.getColumnIndex(KEY_X);
-        int iy=c.getColumnIndex(KEY_Y);
-        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()) {
+    public ArrayList<DataPoint> getData() {
+        ourDatabase = ourHelper.getReadableDatabase();
+        ArrayList<DataPoint> dataPoints = new ArrayList<DataPoint>();
+        String[] col = new String[]{KEY_ROWID, KEY_X, KEY_Y};
+        Cursor c = ourDatabase.query(DATABASE_TABLE, col, null, null, null, null, null);
+        int ix = c.getColumnIndex(KEY_X);
+        int iy = c.getColumnIndex(KEY_Y);
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 
         }
-        return null;
+        return dataPoints;
     }
 }
