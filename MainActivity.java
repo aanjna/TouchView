@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(new GraphicsView(this));
         DatabaseClass entry = new DatabaseClass(MainActivity.this);
         boolean flag = true;
         try {

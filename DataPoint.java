@@ -1,7 +1,7 @@
 package com.example.mahe.touch;
 
 /**
- * Created by GuestAccount on 10/07/2016.
+ * Created by Choudhary on 10/07/2016.
  */
 public class DataPoint {
     public float x;

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Mahe on 20-May-16.
+ * Created by Choudhary on 20-May-16.
  */
 public class DatabaseClass {
     public static final String KEY_ROWID = "_id";
