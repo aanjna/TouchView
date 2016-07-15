@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ import java.util.ArrayList;
  */
 public class DatabaseClass {
     public static final String KEY_ROWID = "_id";
-    public static final String KEY_X = "x";
-    public static final String KEY_Y = "y";
+    public static final String KEY_X = "X";
+    public static final String KEY_Y = "Y";
 
     private static final String DATABASE_NAME = "Details";
     private static final String DATABASE_TABLE = "DetailsTable";
@@ -72,11 +73,19 @@ public class DatabaseClass {
         ArrayList<DataPoint> dataPoints = new ArrayList<DataPoint>();
         String[] col = new String[]{KEY_ROWID, KEY_X, KEY_Y};
         Cursor c = ourDatabase.query(DATABASE_TABLE, col, null, null, null, null, null);
-        int ix = c.getColumnIndex(KEY_X);
-        int iy = c.getColumnIndex(KEY_Y);
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-
+        float[] array = new float[c.getCount()];
+        float[] array1 = new float[c.getCount()];
+        int i=0;
+        if (c.moveToFirst()) {
+            do {
+                float x = c.getFloat(c.getColumnIndex("X"));
+                float y = c.getFloat(c.getColumnIndex("Y"));
+                array[i] = x;
+                array1[i] = y;
+                i++;
+            } while (c.moveToNext());
         }
+        Log.d("hi", "getData() called");
         return dataPoints;
     }
 }
